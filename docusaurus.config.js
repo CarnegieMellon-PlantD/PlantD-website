@@ -77,6 +77,12 @@ const config = {
             label: 'Tutorial',
           },
           {
+            type: 'docSidebar',
+            sidebarId: 'referenceSidebar',
+            position: 'left',
+            label: 'Reference',
+          },
+          {
             href: 'https://github.com/CarnegieMellon-PlantD',
             label: 'GitHub',
             position: 'right',
@@ -110,10 +116,12 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash'],
       },
     }),
 
   plugins: [
+    require.resolve('@easyops-cn/docusaurus-search-local'),
     async function myPlugin(context, options) {
       return {
         name: 'docusaurus-tailwindcss',

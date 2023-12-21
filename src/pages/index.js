@@ -27,7 +27,7 @@ function Header() {
           PlantD collects a standard suite of metrics and visualizations,
           for use when developing or deciding among data pipeline architectures, configurations, and business use cases.
         </p>
-        <Link as="button" className="button button--secondary button--lg" href="/docs/intro">
+        <Link as="button" className="button button--secondary button--lg" href="/docs/tutorial/concepts">
           Get Started
         </Link>
       </div>
@@ -103,25 +103,6 @@ function Main() {
           </div>
         </div>
 
-        <Heading as="h1" className="mt-12">Source Code</Heading>
-        <Heading as="h2"><Link
-          href="https://github.com/CarnegieMellon-PlantD/PlantD-operator">PlantD-operator</Link></Heading>
-        <p>
-          contains the Kubernetes operator, backend server, and data generator.
-          The tool can be operated using the Kubernetes command line tool, kubectl.
-        </p>
-        <Heading as="h2"><Link
-          href="https://github.com/CarnegieMellon-PlantD/PlantD-Studio">PlantD-Studio</Link></Heading>
-        <p>
-          is a web-based management UI deployed along with the operator.
-          The tool can also be operated using this GUI interface.
-        </p>
-        <Heading as="h2"><Link
-          href="https://github.com/CarnegieMellon-PlantD/plantd-test-pipeline">plantd-test-pipeline</Link></Heading>
-        <p>
-          contains the files to setup an simple pipeline-under-test and an example experiment.
-        </p>
-
         <Heading as="h1" className="mt-12">About Us</Heading>
         <p>
           PlantD is maintained by CMU's TEEL Labs, and funded by Honda's 99P Labs. Get in touch with us if you have
@@ -130,7 +111,7 @@ function Main() {
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-4">
           <div className={clsx(cardCls, 'flex items-center gap-4')}>
-            <img src={logoTEELLabs} alt="TEEL Labs Logo" className="w-24" />
+            <img src={logoTEELLabs} alt="TEEL Labs Logo" className="w-24"/>
             <div>
               <Heading as="h2">TEEL Labs</Heading>
               <p>TEEL is a research group at Carnegie Mellon University, led by Professor Majd Sakr.</p>
@@ -138,7 +119,7 @@ function Main() {
             </div>
           </div>
           <div className={clsx(cardCls, 'flex items-center gap-4')}>
-            <img src={logo99PLabs} alt="99P Labs Logo" className="w-24" />
+            <img src={logo99PLabs} alt="99P Labs Logo" className="w-24"/>
             <div>
               <Heading as="h2">99P Labs</Heading>
               <p>99P Labs is a research group at Honda Research Institute USA, Inc.</p>
@@ -155,8 +136,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description={siteConfig.tagline}
+    >
       <Header/>
       <Main/>
     </Layout>
