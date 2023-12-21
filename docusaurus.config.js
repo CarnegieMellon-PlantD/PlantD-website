@@ -97,7 +97,11 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs/tutorial/concepts',
+              },
+              {
+                label: 'Reference',
+                to: '/docs/reference/crd-api-reference',
               },
             ],
           },
