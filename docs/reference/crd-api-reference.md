@@ -59,7 +59,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `CostExporter`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[CostExporterSpec](#costexporterspec)_ | Spec defines the specifictions of the CostExporter. |
 
 
@@ -75,7 +75,7 @@ CostExporterList contains a list of CostExporter
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `CostExporterList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[CostExporter](#costexporter) array_ | Items defines a list of CostExporters. |
 
 
@@ -92,7 +92,7 @@ _Appears in:_
 | --- | --- |
 | `s3Bucket` _string_ | S3Bucket defines the AWS S3 bucket name where stores the cost logs. |
 | `cloudServiceProvider` _string_ | CloudServiceProvider defines the target cloud service provide for calculating cost. |
-| `secretRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | SecretRef defines the reference to the Kubernetes Secret where stores the credentials of cloud service provider |
+| `secretRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | SecretRef defines the reference to the Kubernetes Secret where stores the credentials of cloud service provider |
 
 
 
@@ -110,7 +110,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `DataSet`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[DataSetSpec](#datasetspec)_ | Spec defines the specifications of the DataSet. |
 
 
@@ -126,7 +126,7 @@ DataSetList contains a list of DataSet
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `DataSetList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[DataSet](#dataset) array_ | Items defines a list of DataSets. |
 
 
@@ -164,7 +164,7 @@ _Appears in:_
 | --- | --- |
 | `image` _string_ | Image defines the container image to use |
 | `replicas` _integer_ | Replicas defines the desired number of replicas |
-| `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#resourcerequirements-v1-core)_ | Resources defines the resource requirements per replica |
+| `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#resourcerequirements-v1-core)_ | Resources defines the resource requirements per replica |
 
 
 #### Endpoint
@@ -182,7 +182,7 @@ _Appears in:_
 | `http` _[HTTP](#http)_ | HTTP defines the configuration of the HTTP request. It's mutually exclusive with WebSocket and GRPC. |
 | `websocket` _[WebSocket](#websocket)_ | WebSocket defines the configuration of the WebSocket connection. It's mutually exclusive with HTTP and GRPC. |
 | `grpc` _[GRPC](#grpc)_ | GRPC defines the configuration of the gRPC request. It's mutually exclusive with HTTP and WebSocket. |
-| `serviceRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | ServiceRef defines the Kubernetes Service that exposes metrics. |
+| `serviceRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | ServiceRef defines the Kubernetes Service that exposes metrics. |
 | `port` _string_ | Name of the Service port which this endpoint refers to. <br /><br /> It takes precedence over `targetPort`. |
 | `targetPort` _[IntOrString](https://pkg.go.dev/k8s.io/apimachinery/pkg/util/intstr#IntOrString)_ | Name or number of the target port of the `Pod` object behind the Service, the port must be specified with container port property. <br /><br /> Deprecated: use `port` instead. |
 | `path` _string_ | HTTP path from which to scrape for metrics. <br /><br /> If empty, Prometheus uses the default value (e.g. `/metrics`). |
@@ -192,7 +192,7 @@ _Appears in:_
 | `scrapeTimeout` _[Duration](https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#Duration)_ | Timeout after which Prometheus considers the scrape to be failed. <br /><br /> If empty, Prometheus uses the global scrape timeout unless it is less than the target's scrape interval value in which the latter is used. |
 | `tlsConfig` _[TLSConfig](https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#TLSConfig)_ | TLS configuration to use when scraping the target. |
 | `bearerTokenFile` _string_ | File to read bearer token for scraping the target. <br /><br /> Deprecated: use `authorization` instead. |
-| `bearerTokenSecret` _[SecretKeySelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#secretkeyselector-v1-core)_ | `bearerTokenSecret` specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. <br /><br /> Deprecated: use `authorization` instead. |
+| `bearerTokenSecret` _[SecretKeySelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#secretkeyselector-v1-core)_ | `bearerTokenSecret` specifies a key of a Secret containing the bearer token for scraping targets. The secret needs to be in the same namespace as the ServiceMonitor object and readable by the Prometheus Operator. <br /><br /> Deprecated: use `authorization` instead. |
 | `authorization` _[SafeAuthorization](https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#SafeAuthorization)_ | `authorization` configures the Authorization header credentials to use when scraping the target. <br /><br /> Cannot be set at the same time as `basicAuth`, or `oauth2`. |
 | `honorLabels` _boolean_ | When true, `honorLabels` preserves the metric's labels when they collide with the target's labels. |
 | `honorTimestamps` _boolean_ | `honorTimestamps` controls whether Prometheus preserves the timestamps when exposed by the target. |
@@ -220,7 +220,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `Experiment`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[ExperimentSpec](#experimentspec)_ | Spec defines the specifications of the Experiment. |
 
 
@@ -236,7 +236,7 @@ ExperimentList contains a list of Experiments.
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `ExperimentList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[Experiment](#experiment) array_ | Items defines a list of Experiment. |
 
 
@@ -251,9 +251,9 @@ _Appears in:_
 
 | Field | Description |
 | --- | --- |
-| `pipelineRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | PipelineRef defines s reference of the Pipeline object. |
+| `pipelineRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | PipelineRef defines s reference of the Pipeline object. |
 | `loadPatterns` _[LoadPatternConfig](#loadpatternconfig) array_ | LoadPatterns defines a list of configuration of name of endpoints and LoadPatterns. |
-| `scheduledTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#time-v1-meta)_ | ScheduledTime defines the scheduled time for the Experiment. |
+| `scheduledTime` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#time-v1-meta)_ | ScheduledTime defines the scheduled time for the Experiment. |
 
 
 
@@ -335,7 +335,7 @@ _Appears in:_
 | Field | Description |
 | --- | --- |
 | `data` _string_ |  |
-| `dataSetRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ |  |
+| `dataSetRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ |  |
 
 
 #### LoadPattern
@@ -351,7 +351,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `LoadPattern`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[LoadPatternSpec](#loadpatternspec)_ | Spec defines the specification of the LoadPattern. |
 
 
@@ -367,7 +367,7 @@ _Appears in:_
 | Field | Description |
 | --- | --- |
 | `endpointName` _string_ | EndpointName defines the name of endpoint where to send the requests. It should match the name of endpoint declared in the specification of the pipeline. |
-| `loadPatternRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | LoadPatternRef defines s reference of the LoadPattern object. |
+| `loadPatternRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | LoadPatternRef defines s reference of the LoadPattern object. |
 
 
 #### LoadPatternList
@@ -382,7 +382,7 @@ LoadPatternList contains a list of LoadPattern
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `LoadPatternList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[LoadPattern](#loadpattern) array_ | Items defines a list of LoadPattern. |
 
 
@@ -430,7 +430,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `Pipeline`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[PipelineSpec](#pipelinespec)_ | Spec defines the specifications of the Pipeline. |
 
 
@@ -446,7 +446,7 @@ PipelineList contains a list of Pipeline
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `PipelineList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[Pipeline](#pipeline) array_ | Items defines a list of Pipelines. |
 
 
@@ -468,7 +468,7 @@ _Appears in:_
 | `inCluster` _boolean_ | In cluster flag. True indecates the pipeline-under-test is deployed in the same cluster as the plantD. Otherwise it should be False. |
 | `cloudVendor` _string_ | State which cloud service provider the pipeline is deployed. |
 | `enableCostCalculation` _boolean_ | Cost calculation flag. |
-| `experimentRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | Internal usage. For experiment object to lock the pipeline object. |
+| `experimentRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | Internal usage. For experiment object to lock the pipeline object. |
 
 
 
@@ -486,7 +486,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `PlantDCore`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[PlantDCoreSpec](#plantdcorespec)_ |  |
 
 
@@ -502,7 +502,7 @@ PlantDCoreList contains a list of PlantDCore
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `PlantDCoreList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[PlantDCore](#plantdcore) array_ |  |
 
 
@@ -538,7 +538,7 @@ _Appears in:_
 | --- | --- |
 | `scrapeInterval` _[Duration](https://pkg.go.dev/github.com/prometheus-operator/prometheus-operator/pkg/apis/monitoring/v1#Duration)_ | ScrapeInterval defines the desired time length between scrapings |
 | `replicas` _integer_ | Replicas defines the desired number of replicas |
-| `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#resourcerequirements-v1-core)_ | Resources defines the resource requirements per replica |
+| `resources` _[ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#resourcerequirements-v1-core)_ | Resources defines the resource requirements per replica |
 
 
 #### Schema
@@ -554,7 +554,7 @@ _Appears in:_
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `Schema`
-| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[SchemaSpec](#schemaspec)_ | Spec defines the specifications of the Schema. |
 
 
@@ -570,7 +570,7 @@ SchemaList contains a list of Schema
 | --- | --- |
 | `apiVersion` _string_ | `windtunnel.plantd.org/v1alpha1`
 | `kind` _string_ | `SchemaList`
-| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
+| `metadata` _[ListMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#listmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `items` _[Schema](#schema) array_ | Items defines a list of Schemas. |
 
 
@@ -633,7 +633,7 @@ _Appears in:_
 | Field | Description |
 | --- | --- |
 | `tags` _object (keys:string, values:string)_ | Tags defines the tags for the resources of the pipeline-under-test in the cloud service provider. |
-| `secretRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#objectreference-v1-core)_ | SecretRef defines the reference to the Kubernetes Secret object for authentication on the cloud service provider. |
+| `secretRef` _[ObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#objectreference-v1-core)_ | SecretRef defines the reference to the Kubernetes Secret object for authentication on the cloud service provider. |
 
 
 #### WebSocket
