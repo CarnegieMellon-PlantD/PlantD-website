@@ -18,7 +18,10 @@ curl https://raw.githubusercontent.com/CarnegieMellon-PlantD/PlantD-operator/mai
 kubectl get svc plantd-studio-service -n plantd-operator-system -o jsonpath='{.status.loadBalancer.ingress[0].hostname}{"\n"}'
 ```
 
-Note that it may take up to 2-3 minutes for the PlantD Studio to be available at the above hostname.
+### Note
+* It may take up to 2-3 minutes for the PlantD Studio to be available at the above hostname.
+* If running locally in minikube, services of type LoadBalancer can't be assigned a public IP address directly as they would in a cloud environment. 
+    * Use this command to expose the PlantD service frontend endpoint - `minikube service plantd-studio-service -n plantd-operator-system`.
 
 ## Run Experiment with Test Pipeline (Optional)
 
