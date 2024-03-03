@@ -20,8 +20,10 @@ const sidebars = {
       items: [
         'tutorial/concepts',
         'tutorial/prerequisites',
-        'tutorial/test-pipeline',
         'tutorial/installation',
+        'tutorial/test-pipeline',
+        'tutorial/instrument',
+        'tutorial/experiment',
       ],
     }
   ],
