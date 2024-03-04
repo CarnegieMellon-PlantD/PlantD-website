@@ -7,15 +7,9 @@ enters and exits each phase of the pipeline.
 
 To do this, you'll need to do the following:
 
-1. Install the OpenTelemetry library
-for the language your pipeline is written in.
-2. For each stage of the pipeline that you wish to be
-reflected in PlantD analysis, set up OpenTelemetry
-to measure the top level function of that stage as
-a "span".  OpenTelemetry will create a log when the
-stage begins, and when it exits, capturing the duration
-of each data item's processing by that phase.  It will
-also track data passing from one phase to the next. 
+1. Setup the Open Telemetry library for your pipeline's programming language(s).  For python, for example, it's https://opentelemetry.io/docs/languages/python/getting-started/
+2. Setup the the PlantD Collector on a VM as a Docker container making sure the collector is either reachable either through a local IP or a Public IP - follow the instructions here: https://github.com/CarnegieMellon-PlantD/plantd-test-pipeline/blob/main/docker-compose.yml#L67-L75
+3. Initialize the OpenTelemetry library following instructions here. Make sure tracer name should remain the same across all the phases
+4. Add Open Telemetry "tracers" to each stage of your pipeline.  This is code that logs the start and end of the "span" defining when a data item first arrives, then leaves, some stage or part of your pipeline.  An example of this code can be found in our test pipeline here: https://github.com/CarnegieMellon-PlantD/plantd-test-pipeline/blob/23ecad792e49b88cfa819408d3e3f3099f89e8a6/phase1.py#L80
 
-We have already done this for you in the optional test pipeline,
-so you can look at it as a worked example.
+
