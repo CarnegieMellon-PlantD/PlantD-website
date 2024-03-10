@@ -24,6 +24,7 @@ const sidebars = {
         'tutorial/test-pipeline',
         'tutorial/instrument',
         'tutorial/experiment',
+        'tutorial/business',
       ],
     }
   ],
