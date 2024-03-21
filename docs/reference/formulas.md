@@ -12,8 +12,8 @@ For example,
 | `And` | Apply `&&` Operator | `bool` | List of columns containing `bool`.<br />For example,  `["schema1.col1", "schema2.col2", ...]` |
 | `Or` | Apply `\|\|` Operator | `bool` | List of columns containing `bool`.<br />For example,  `["schema1.col1", "schema2.col2", ...]` |
 | `XOrInt` | Apply `\|` Operator | `int` | List of columns containing `int`.<br />For example,  `["schema1.col1", "schema2.col2", ...]` |
-| `Copy` | Copy value from given column | `any` | Any column.<br />For example, `["schema1.col1"]` |
-| `CurrentTimeMs` | Current time in milliseconds | `int64` | `[]` |
-| `ToUnixMilli` | Convert date like `2006-01-02` to Unix milliseconds | `int64` | Any column.<br />For example, `["schema1.col1"]` |
-| `AddRandomTimeMs` | Copy value from given column, and add a random number between minimum and maximum to it  | `int64` | Any column, a minimum integer in string, and a maximum integer in string.<br />For example, `["schema1.col1", "-100", "100"]` |
-| `AddRandomNumber` | Copy value from given column, and add a random number between minimum and maximum to it | `int` | Any column, a minimum integer in string, and a maximum integer in string.<br />For example, `["schema1.col1", "-100", "100"]` |
+| `Copy` | Copy value from given column | `any` | One column.<br />For example, `["schema1.col1"]` |
+| `CurrentTimeMs` | Current time in Unix milliseconds | `int64` | `[]` |
+| `ToUnixMilli` | Convert date like `2006-01-02` to Unix milliseconds | `int64` | One column.<br />For example, `["schema1.col1"]` |
+| `AddRandomTimeMs` | Copy value from given column, and add a random number between minimum and maximum to it  | `int64` | One column, a minimum integer in string, and a maximum integer in string.<br />For example, `["schema1.col1", "-100", "100"]` |
+| `AddRandomNumber` | Copy value from given column, and add a random number between minimum and maximum to it | `int` | One column, a minimum integer in string, and a maximum integer in string.<br />For example, `["schema1.col1", "-100", "100"]` |
