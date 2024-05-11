@@ -15,7 +15,7 @@ curl https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/m
 curl https://raw.githubusercontent.com/CarnegieMellon-PlantD/PlantD-operator/main/bundle.yaml | kubectl create -f - 
 
 # Get the Studio service hostname
-kubectl get svc plantd-studio-service -n plantd-operator-system -o jsonpath='{.status.loadBalancer.ingress[0].hostname}{"\n"}'
+kubectl get svc plantd-studio -n plantd-operator-system -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
 ### Note
