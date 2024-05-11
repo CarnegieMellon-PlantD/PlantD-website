@@ -195,4 +195,40 @@ the projected cost savings of some improvement.
 The output of the simulation indicates the digital twin's prediction of
 cost, latency, throughput when presented with a traffic pattern.
 
+### Simulation output visualizations
+
+**Records Processed per Month** Shows how many records were processed each month of the simulation.
+
+**Total count of records procesesd per month for schema** In a schema-aware simulation, this shows how many of a particular schema type were processed in a month.  WARNING: these displays are currently not dynamically generated for each schema, but are hard-coded for the example pipeline, showing `product`, `supplier` and `warehouse` schemas.  Add graphs for your own schemas by editing the file `src/pages/dashboard/SimulationReport.tsx` in the `PlantD-Studio` repository.
+
+
+**Total Latency** The average latency of the pipeline, for each month of the simulation.  This counts time spent waiting in a queue, so if the pipeline is overwhelmed by the volume of data, the latency may become quite large.
+
+**Queue Length**  Average length of the simulated queue; again, can get quite large if the simulated pipeline has less throughput than the simulated traffic.
+
+**Total MB processed** Taking into account the size of the different kinds of records processed, this graph shows how many megabytes were ingested into the pipeline per month; useful for calculating network and storage costs.
+
+**Network cost** Multiplies the total MB processed by the user's estimated cost per megabyte of network use (see sec. "Net Costs" above), to estimate network cost per month of running the pipeline.
+
+**Data storage costs** This is the cost of storing raw data received from the network, given the user's estimate (see sec. "Net Costs" above) of data storage cost and retention policy.  Typically it will ramp up over time as more and more data is accumulated, then levelling off assuming that old data is being deleted after the retention period. 
+
+**Pipeline infrastructure cost** The cost of running the pipeline infrastructure; this depends on how the simulation works. In a Simple simulation, the cost is flat, assuming fixed resources; in scaling simulations it assumes the base resources are multiplied by some integer necessary to handle the load at all times, and the cost scales linearly with that.  More sophisticated simulations may result in more sophisticated cost predictions.
+
+
+### Use case #1: Exploring costs of different task mixes on a real pipeline
+
+One possible practical way of making use of the business analysis and simulation features is for an engineer to set up a pipeline, then let a business analyst experiment with the simulation.
+
+1. An engineer should set up a pipeline to the point where they can successfully run an experiment and get results, being sure to use every type of schema that the pipeline can accept and process in that experiment.
+2. The engineer can also define a "schema-aware" digital twin, pointing to the same dataset used for the successful experiment.  Enter a "maximum rps" that is more than the pipeline's throughput (but not vastly more; you want experiments to max out the pipeline, but going overboard will just waste time waiting for a huge queue to clear).  This will trigger several experiments, after which the engineer can hand off the process to a business analyst.
+3. A business analyist can set up a Net Costs and Traffic model entity reflecting their assumptions about some coming year.  Note that the simulation will be for an arbitrary upcoming year; the year number is not meaningful.
+4. Business analyst can now experiment with different scenarios: fill out various scenarios representing different forecasted mixes and frquencies of scenarios.For each scenario, create a simulation linking that scenario with the digital twin provided by the engineer.  The resulting simulations can be compared in terms of cost and performance.
+
+### Use case #2: Pure traffic simulation without modeling a pipeline
+
+A simulation can be run without a pipeline, but of course the simulation will produce only cost estimates of network and storage cost, not of pipeline infrastructure cost.
+
+1. An engineer will create schemas and a dataset, but not define a pipeline or run any experiment. The digital twin can point to this dataset but omit reference to any pipeline
+2. A business analyist can set up a Net Costs and Traffic model entity reflecting their assumptions about some coming year.  Note that the simulation will be for an arbitrary upcoming year; the year number is not meaningful.
+3. Business analyst can now experiment with different scenarios: fill out various scenarios representing different forecasted mixes and frquencies of scenarios.For each scenario, create a simulation linking that scenario with the digital twin provided by the engineer.  The resulting simulations can be compared in terms of cost and performance, but they will show 0 pipeline infrastructure cost.
 
