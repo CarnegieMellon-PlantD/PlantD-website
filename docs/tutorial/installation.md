@@ -22,14 +22,18 @@ kubectl get svc plantd-studio -n plantd-operator-system -o jsonpath='{.status.lo
 
 Prometheus metrics storage is ephemeral. To enable long-term metrics persistence, PlantD uses Thanos to store and retrieve metrics from an S3 Bucket. 
 
-To enable Thanos, follow below steps - 
-1. Create a new access key in AWS for thanos.
-2. Run script https://github.com/CarnegieMellon-PlantD/PlantD-operator/blob/main/misc/setup_thanos_storage.py to setup thanos infrastructure. 
-Usage - `setup_thanos_storage.py <bucket_name> <access_key> <secret_key>`.
-The script  - 1. creates a new S3 bucket, 2. attaches iam policy to user to access the S3 bucket, and 3. Creates thanos secret with the given access_key & secret_key.
-3. Set `thanosEnabled: true` in `plantdcore` CR spec
+Follow the listed steps to enable Thanos, 
 
-After this, thanos sidecar, querier and store should be deployed in the k8s cluster and metrics will be fetched from Thanos.
+1. Generate a set of AWS Credentials (AWS Access Key and AWS Secret Access Key Id) in AWS
+
+2. Execute the [script](https://github.com/CarnegieMellon-PlantD/PlantD-operator/blob/main/misc/setup_thanos_storage.py) to setup the Thanos infrastructure
+```
+    python3 setup_thanos_storage.py <bucket_name> <access_key> <secret_key>
+```
+
+3. Set `thanosEnabled: true` in `plantdcore` CR spec and `kubectl apply`
+
+If all steps are successful, a Thanos sidecar, querier and store should be deployed in the K8 cluster and metrics will be queried from Thanos.
 
 ### Note
 * It may take up to 2-3 minutes for the PlantD Studio to be available at the above hostname.
