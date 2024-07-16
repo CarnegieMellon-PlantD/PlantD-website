@@ -18,6 +18,23 @@ curl https://raw.githubusercontent.com/CarnegieMellon-PlantD/PlantD-operator/mai
 kubectl get svc plantd-studio -n plantd-operator-system -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
 ```
 
+## Enable Thanos (Metrics Persistence)
+
+Prometheus metrics storage is ephemeral. To enable long-term metrics persistence, PlantD uses Thanos to store and retrieve metrics from an S3 Bucket. 
+
+Follow the listed steps to enable Thanos, 
+
+1. Generate a set of AWS Credentials (AWS Access Key and AWS Secret Access Key Id) in AWS
+
+2. Execute the [script](https://github.com/CarnegieMellon-PlantD/PlantD-operator/blob/main/misc/setup_thanos_storage.py) to setup the Thanos infrastructure
+```
+    python3 setup_thanos_storage.py <bucket_name> <access_key> <secret_key>
+```
+
+3. Set `thanosEnabled: true` in `plantdcore` CR spec and `kubectl apply`
+
+If all steps are successful, a Thanos sidecar, querier and store should be deployed in the K8 cluster and metrics will be queried from Thanos.
+
 ### Note
 * It may take up to 2-3 minutes for the PlantD Studio to be available at the above hostname.
 * If running locally in minikube, services of type LoadBalancer can't be assigned a public IP address directly as they would in a cloud environment. 
